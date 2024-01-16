@@ -1,15 +1,8 @@
 {% extends 'base.html' %}
 {% block log_in %}
-    <a class="nav-link" style="font-size: 30px;
-                                background: linear-gradient(to right, #FFCB1F 42%, #FF1A16 81%);
-                                -webkit-background-clip: text;
-                                -webkit-text-fill-color: transparent;"
-                           href="#">
-        <i class="bi bi-person-fill-gear"></i>
-    </a>
     <form method="post" action="{% url 'accounts:logout' %}?next={{ request.get_full_path }}">
         {% csrf_token %}
-        <button class="nav-link ms-3" style="font-size: 30px;
+        <button class="nav-link" style="font-size: 30px;
             background: linear-gradient(to right, #FFCB1F 42%, #FF1A16 81%);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;" type="submit">
@@ -18,5 +11,33 @@
     </form>
 {% endblock %}
 {% block main %}
-    <h2>{{ user.username }}</h2>
+    <div class="user_profile" style="display: flex; margin-top: 50px; margin-bottom: 60px">
+        <div class="user_image">
+            <img style="border-radius: 50%; width: 250px; height: 250px" src="{{ user.avatar.url }}" alt="Avatar">
+        </div>
+        <div class="user_info" style="margin-left: 100px;">
+            <div class="user_title" style="display: flex; margin-bottom: 25px">
+                <span style="font-size: 30px;">{{ user.username }}</span>
+                <div class="user_create">
+                    <a class="btn btn-outline-secondary ms-4" href="#">Редактировать профиль</a>
+                </div>
+            </div>
+            <div class="counts" style="margin-bottom: 40px">
+                <span>*публикаций</span>
+                <span style="margin-left: 30px">*подписчиков</span>
+                <span style="margin-left: 30px">*Подписки:</span>
+            </div>
+            <div class="info">
+                <span><b>{{ user.first_name }} {{ user.last_name }}</b></span><br>
+                <span>{{ user.user_info }}</span>
+            </div>
+        </div>
+    </div>
+    {% for post in posts %}
+        <div style="border: 2px solid white">
+            <a href="#">
+                <img style="width: 240px; height: 240px" src="{{ post.image.url }}" alt="Image">
+            </a>
+        </div>
+    {% endfor %}
 {% endblock %}
