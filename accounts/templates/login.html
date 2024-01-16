@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block log_in %}
+    <a class="nav-link ms-3" style="font-size: 30px;
+                                background: linear-gradient(to right, #FFCB1F 42%, #FF1A16 81%);
+                                -webkit-background-clip: text;
+                                -webkit-text-fill-color: transparent;"
+                           href="#">
+        <i class="bi bi-person-fill-add"></i>
+    </a>
+{% endblock %}
+{% block main %}
+    <h1 style="text-align: center">Вход</h1>
+
+    <form action="{% url 'accounts:login' %}" method="post" class="text-center">
+        {% csrf_token %}
+        <div class="mb-3 ">
+            <label for="username" class="form-label">Имя пользователя:</label>
+            <input type="text" class="form-control mx-auto" id="username" name="username" style="max-width: 300px">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Пароль:</label>
+            <input type="password" class="form-control mx-auto" id="password" name="password"  style="max-width: 300px">
+        </div>
+        <button type="submit" class="btn btn-primary">Войти</button>
+    </form>
+{% endblock %}

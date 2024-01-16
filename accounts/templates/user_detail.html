@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block log_in %}
+    <a class="nav-link" style="font-size: 30px;
+                                background: linear-gradient(to right, #FFCB1F 42%, #FF1A16 81%);
+                                -webkit-background-clip: text;
+                                -webkit-text-fill-color: transparent;"
+                           href="#">
+        <i class="bi bi-person-fill-gear"></i>
+    </a>
+    <form method="post" action="{% url 'accounts:logout' %}?next={{ request.get_full_path }}">
+        {% csrf_token %}
+        <button class="nav-link ms-3" style="font-size: 30px;
+            background: linear-gradient(to right, #FFCB1F 42%, #FF1A16 81%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;" type="submit">
+                <i class="bi bi-person-fill-dash"></i>
+        </button>
+    </form>
+{% endblock %}
+{% block main %}
+    <h2>{{ user.username }}</h2>
+{% endblock %}
