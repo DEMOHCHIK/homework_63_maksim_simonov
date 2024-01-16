@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block menu %}
+{% endblock %}
+{% block main %}
+    <div class="user_link mb-2">
+            <a style="color: black; text-decoration: none;"
+                      href="{% url 'accounts:user_detail' pk=post.author.pk %}">
+                <img style="border-radius: 50%; width: 40px; height: 40px" src="{{ post.author.avatar.url }}" alt="Image">
+                <b>{{ post.author.username }}</b></a>
+    </div>
+    <img class="mb-2" style="width: 800px" src="{{ post.image.url }}" alt="{{ post.title }}">
+    <div class="mb-4">
+        <div style="font-size: 30px;">
+            <i class="bi bi-heart"></i>
+            <i class="bi bi-chat ms-3"></i>
+        </div>
+        <span><b>{{ post.like_count }} отметок "Нравится"</b></span><br>
+        <span><a style="color: black; text-decoration: none;"
+                 href="{% url 'accounts:user_detail' pk=post.author.pk %}"><b>{{ post.author.username }}</b></a> {{ post.title }}
+            </span><br>
+        <span>{{ post.description }}</span><br>
+        <span style="color: #8f8f8f">Все комментарии ({{ post.comment_count }})</span><br>
+    </div>
+    <a class="btn btn-primary" href="{% url 'webapp:post_edit' pk=post.pk %}">Изменить</a>
+    <a class="btn btn-danger ms-3" href="{% url 'webapp:post_delete' pk=post.pk %}">Удалить</a>
+{% endblock %}

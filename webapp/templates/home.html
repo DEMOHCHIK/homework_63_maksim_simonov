@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
+{% block menu %}
+{% endblock %}
 {% block main %}
     {% for post in posts %}
-        <img src="#" alt="">
-        <a style="color: black; text-decoration: none;"
-                  href="{% url 'accounts:user_detail' pk=post.author.pk %}"><b>{{ post.author.username }}</b></a><br>
+        <div class="user_link mb-2">
+
+            <a style="color: black; text-decoration: none;"
+                      href="{% url 'accounts:user_detail' pk=post.author.pk %}">
+                <img style="border-radius: 50%; width: 40px; height: 40px" src="{{ post.author.avatar.url }}" alt="Image">
+                <b>{{ post.author.username }}</b></a>
+        </div>
+
         <img class="mb-2" style="width: 800px" src="{{ post.image.url }}" alt="{{ post.title }}">
         <div class="mb-4">
             <div style="font-size: 30px;">
