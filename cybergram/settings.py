@@ -112,3 +112,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_ROOT = Path.joinpath(BASE_DIR, 'uploads')
+MEDIA_URL = '/media/'
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
