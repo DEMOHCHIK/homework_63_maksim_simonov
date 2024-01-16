@@ -32,7 +32,7 @@
                     {% endblock %}
                 </div>
                 {% block search %}
-                    <a class="nav-link" href="#">Search</a>
+                    <a class="nav-link" href="{% url 'accounts:user_search' %}">Search</a>
                 {% endblock %}
                 <div class="log_in" style="display: flex">
                     {% block log_in %}
@@ -56,7 +56,7 @@
                                     background: linear-gradient(to right, #FFCB1F 42%, #FF1A16 81%);
                                     -webkit-background-clip: text;
                                     -webkit-text-fill-color: transparent;"
-                               href="{% url 'accounts:user_detail' pk=request.user.pk %}">
+                               href="{% url 'accounts:user_detail' pk=user.pk %}">
                                 <i class="bi bi-person-fill-check"></i>
                             </a>
                         {% endif %}

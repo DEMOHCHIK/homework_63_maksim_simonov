@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block search %}
+    <form method="get">
+        <input class="" type="text" placeholder="Поиск" name="search_query" value="{{ request.GET.search_query }}">
+        <button class="btn btn-primary mb-1" type="submit">Найти</button>
+    </form>
+{% endblock %}
+{% block main %}
+    <h3>Поиск пользователей</h3>
+    {% if users %}
+        <h3>Результаты поиска:</h3>
+        <ul>
+            {% for user in users %}
+                <li>
+                    <a style="text-decoration: none; color: black"
+                       href="{% url 'accounts:user_detail' pk=user.pk %}"><b>{{ user.username }}</b></a>
+                </li>
+            {% endfor %}
+        </ul>
+
+    {% endif %}
+{% endblock %}
