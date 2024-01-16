@@ -6,8 +6,14 @@ from django.contrib.auth import get_user_model
 class MyUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
-        fields = UserCreationForm.Meta.fields + (
-            'email', 'password', 'avatar', 'first_name', 'last_name', 'user_info', 'phone_number', 'gender')
+        fields = (
+            'username', 'email', 'password', 'avatar', 'first_name', 'last_name', 'user_info', 'phone_number', 'gender')
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = get_user_model()
+        fields = ['username', 'email', 'avatar', 'first_name', 'last_name', 'user_info', 'phone_number', 'gender']
 
 
 class UserSearchForm(forms.Form):

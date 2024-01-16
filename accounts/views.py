@@ -1,10 +1,10 @@
 from django.contrib.auth import get_user_model, login
 from django.db.models import Q
 from django.shortcuts import redirect
-from django.urls import reverse
-from django.views.generic import DetailView, CreateView, ListView, FormView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import DetailView, CreateView, ListView, FormView, UpdateView
 
-from accounts.forms import MyUserCreationForm, UserSearchForm
+from accounts.forms import MyUserCreationForm, UserSearchForm, UserProfileForm
 from webapp.models import Post
 
 
@@ -37,6 +37,15 @@ class RegisterView(CreateView):
         if not next_page:
             next_page = reverse('webapp:home')
         return next_page
+
+
+class UserUpdateView(UpdateView):
+    model = get_user_model()
+    form_class = UserProfileForm
+    template_name = 'user_edit.html'
+
+    def get_success_url(self):
+        return reverse_lazy('accounts:user_detail', kwargs={'pk': self.object.pk})
 
 
 class UserSearchView(ListView, FormView):
